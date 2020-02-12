@@ -1,0 +1,1069 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mala">
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1">
+
+
+    <meta name="description" content="half of iOSer, half of tester">
+
+
+
+  <meta name="keywords" content="python,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sherlock" type="application/atom+xml">
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1">
+
+
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python基础知识总结">
+<meta property="og:url" content="http://sherlockz.github.io/2016/05/26/python-base/index.html">
+<meta property="og:site_name" content="Sherlock">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://sherlockz.github.io/2016/05/26/python-base/python_humor.png">
+<meta property="og:image" content="http://sherlockz.github.io/2016/05/26/python-base/xrange.png">
+<meta property="og:image" content="http://sherlockz.github.io/2016/05/26/python-base/range.png">
+<meta property="og:image" content="http://sherlockz.github.io/2016/05/26/python-base/contrast.png">
+<meta property="og:updated_time" content="2016-06-08T13:14:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python基础知识总结">
+<meta name="twitter:image" content="http://sherlockz.github.io/2016/05/26/python-base/python_humor.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mala',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> Python基础知识总结 | Sherlock </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">trace your love</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br>
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br>
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br>
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br>
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Ls6_vyuHEGACo3ng2hvy','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              Python基础知识总结
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2016-05-26T20:25:43+08:00" content="2016-05-26">
+            2016-05-26
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2016/05/26/python-base/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/26/python-base/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><img src="/2016/05/26/python-base/python_humor.png" alt="python"></p>
+<a id="more"></a>
+<h1 id="WHY-Python"><a href="#WHY-Python" class="headerlink" title="WHY Python?"></a>WHY Python?</h1><p>首先,学一门语言都会问:点解要学这门语言?<br>而学Python的原因很简单,原因就是…..好鬼简单.(这句话不是我说的)<br>很喜欢Python极简的代码风格,以及众多功能强大的模块……<br>学了两天Python有点点体会,觉得应该总结一下有哪些应该注意的地方.</p>
+<h1 id="基本问题"><a href="#基本问题" class="headerlink" title="基本问题"></a>基本问题</h1><h2 id="学习途径"><a href="#学习途径" class="headerlink" title="学习途径"></a>学习途径</h2><p>初学者推荐一个公众号:<a href="http://crossincode.com/home/" target="_blank" rel="noopener">Crossin的编程教室</a>(喜欢作者的教学方式)</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>用Mac或者Linux的同学是幸福的,直接在终端输入<code>idle</code>就好了,这两个系统都是默认自带Python的,如果想直接在终端打开Python Shell,直接输入<code>python</code>就好了.windows下就有点麻烦,好吧,事实上麻烦到我不想去尝试配置了,详情见<code>Crossin的编程教室</code>第一课.</p>
+<p>配置好之后就可以打出你的第一行代码啦!</p>
+<blockquote>
+<p>>&gt;&gt;print ‘Hello World!’</p>
+</blockquote>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="print"><a href="#print" class="headerlink" title="print"></a>print</h2><p>这个函数的兼容性可以说极强</p>
+<blockquote>
+<p>>&gt;&gt; print “hello” #双引号可以<br>hello<br>>&gt;&gt; print ‘world’ #单引号可以<br>world<br>>&gt;&gt; print 1 #纯数字直接写<br>1<br>>&gt;&gt; print 3.14<br>3.14<br>>&gt;&gt; print 3e30<br>3e+30<br>>&gt;&gt; print 1 + 2 * 3 #支持表达式计算<br>7<br>>&gt;&gt; print(2 &gt; 5) #支持真假判断<br>False</p>
+</blockquote>
+<p>有一点值得注意的是:<strong>2.0版本print和print()都是可以的,但是3.0之后print后面的表达式必须加括号.</strong></p>
+<h2 id="input-和raw-input"><a href="#input-和raw-input" class="headerlink" title="input()和raw_input()"></a>input()和raw_input()</h2><p><code>input()</code> 接收的是一个值或变量，也就是说，你如果输 123，程序接收到的就是整数 123，你输 True，就是 bool 值 True。如果你输了 python，程序会认为这是一个叫做 python 的变量，而假如你没有定义过这个变量，就会报错。所以如果想通过input获得一段文字,<strong>输入的时候必须把文字用双引号或者单引号括起来.</strong></p>
+<p><code>raw_input()</code>接收的是一个字符串,不管你输入什么都会当做一个字符串.</p>
+<p>然后在3.0之后,将<code>input()</code>和<code>raw_input()</code>合并了,为了减少混乱吧…保留input关键字,但是功能确保留了raw_input的功能,就是说,在3.0之后,<strong>你用input(),获得的就是一段字符串,无论你输入什么.</strong>那么问题来了,我想要获得一个值或者一个变量肿么办?<code>value = eval(input())</code>即可.</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>命名规则:</p>
+<ul>
+<li>第一个字符必须是字母或者下划线“_”</li>
+<li>剩下的部分可以是字母、下划线“_”或数字（0-9）</li>
+<li>变量名称是对大小写敏感的，myname和myName不是同一个变量。</li>
+</ul>
+<p>Python是动态变量类型的,定义变量的时候不需要指明这个变量是什么类型,编译器会根据赋给变量的值去判断类型:</p>
+<blockquote>
+<p>name = ‘Crossin’ #字符型(需要用’ ‘或者” “引起来)<br>   myVar = 123  #整型<br>   price = 5.99 #浮点型<br>   visible = True   #布尔型<br>   a = 1 &gt; 3    #通过逻辑表达式赋值</p>
+</blockquote>
+<h2 id="bool-‘False’"><a href="#bool-‘False’" class="headerlink" title="bool(‘False’)"></a>bool(‘False’)</h2><p>在python中，以下数值会被认为是False：</p>
+<ul>
+<li>为0的数字, 包括0，0.0</li>
+<li>空字符串, 包括 ‘’ , “”</li>
+<li>表示空值的None</li>
+<li>空集合, 包括() , [] , {}</li>
+</ul>
+<p>其他的值都认为是True。<br>因为’False’是一个非空字符串,所以转成bool类型之后,就是True,所以bool(‘False’) = True,同理bool(‘ ‘) = True.</p>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><p>Python不需要用分号来结束一行代码,取而代之的就是严格的缩进格式,刚刚开始就是过因为缩进格式不对,不断出现错误,具体你在敲一个回车的时候,下一行要缩进几格是可以设置的:Preferences-&gt;Indentation Width(这个是mac下的设置路径,windows下的名字也应该大同小异)</p>
+<h2 id="import"><a href="#import" class="headerlink" title="import"></a>import</h2><pre><code>import random
+</code></pre><p>import语句告诉python，我们要用random模块中的内容。然后便可以使用random中的方法，比如：</p>
+<pre><code>random.randint(1, 10)
+random.choice([1, 3, 5])
+</code></pre><p>注意，函数前面需要加上“random.”，这样python才知道你是要调用random中的方法。</p>
+<p>想知道random有哪些函数和变量，可以用dir()方法：</p>
+<pre><code>dir(random)
+</code></pre><p>如果你只是用到random中的某一个函数或变量，也可以通过from…import…指明：</p>
+<pre><code>from math import pi
+print pi
+</code></pre><p>为了便于理解和避免冲突，你还可以给引入的方法换个名字：</p>
+<pre><code>from math import pi as math_pi
+print math_pi
+</code></pre><h2 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h2><p>读写文件有三种模式:</p>
+<ul>
+<li><code>r</code>:只读模式</li>
+<li><code>w</code>:覆盖模式</li>
+<li><code>a</code>:添加模式</li>
+</ul>
+<p>函数格式:<br>    file(‘文件名’,’参数’)<br>    open(‘文件名’,’参数’)</p>
+<p>读文件命令很简单:</p>
+<pre><code>file(&apos;文件名&apos;) #默认参数为r
+</code></pre><p>如果文件和代码放在同一个文件夹,直接写名字就好了,不是就要写文件的绝对路径.还有很神奇的一点就是,如果路径没有找到文件,就会自动创建这个文件.</p>
+<h2 id="and-or"><a href="#and-or" class="headerlink" title="and-or"></a>and-or</h2><pre><code>c = bool and a or b 
+</code></pre><p>通常情况下,只要bool值为真则a,为假则b<br>但如果当a本身就为假,比如0,’’.这时,几时bool为真也会取b,所以为了避免这种情况,应当将a-&gt;[a] , b-&gt;[b],将元素变成列表,即使是[‘’]或者[0]这是为真的,但是对应的,表达式返回的也是一个列表,去列表第一个元素即可,因此表达式也要相应改变一下:</p>
+<pre><code>c = (bool and [a] or [b])[0]
+</code></pre><h2 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h2><p>首先,使用之前都要import random模块:</p>
+<pre><code>import random
+</code></pre><p>调用时是调用类方法的的形式:</p>
+<pre><code>num = random.randint(1,100)
+</code></pre><p>常用的方法;</p>
+<pre><code>random.random() #生成一个0到1之间的随机浮点数，包括0但不包括1，也就是[0.0, 1.0)。
+
+random.uniform(a, b) #生成a、b之间的随机浮点数。不过与randint不同的是，a、b无需是整数，也不用考虑大小。
+
+random.choice(seq) #从序列中随机选取一个元素。seq需要是一个序列，比如list、元组、字符串。
+
+random.randrange(start, stop, step) #生成一个从start到stop（不包括stop），间隔为step的一个随机数。start、stop、step都要为整数，且start&lt;stop。
+
+random.sample(population, k) #从population序列中，随机获取k个元素，生成一个新序列。sample不改变原来序列。
+
+random.shuffle(x) #把序列x中的元素顺序打乱。shuffle直接改变原有的序列。
+</code></pre><h2 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a>列表解析</h2><p>Python的列表(list)就是数组,支持表达式赋值<br>比如从另一个list中去部分元素:</p>
+<pre><code>ist_1 = [1, 2, 3, 5, 8, 13, 22]
+list_2 = [i for i in list_1 if i % 2 == 0] #从list_1中取出模2的数
+print list_2
+
+输出
+[2, 8, 22]
+</code></pre><h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="常用特殊符号"><a href="#常用特殊符号" class="headerlink" title="常用特殊符号"></a>常用特殊符号</h2><p>可以看我之前写的一篇博文:<a href="http://sherlockz.github.io/2016/05/19/python-re-symbol/">python正则表达式的部分特殊符号</a></p>
+<h2 id="值得注意的地方"><a href="#值得注意的地方" class="headerlink" title="值得注意的地方"></a>值得注意的地方</h2><p><code>Hi和hi</code>: 默认情况下,正则表达式是严格区分大小写的.<br><code>[0-9]</code>: [0123456789]可以写成[0-9]这种形式,同理,类似的还有[a-zA-Z].<br><code>()</code>: ()在正则表达式里也有着特殊的含义, 所以要匹配字符”(“, 需要用”\(“.</p>
+<h2 id="懒惰匹配和贪婪匹配"><a href="#懒惰匹配和贪婪匹配" class="headerlink" title="懒惰匹配和贪婪匹配"></a>懒惰匹配和贪婪匹配</h2><pre><code>&quot;.*&quot; 和 &quot;.*?&quot;
+</code></pre><p><code>“*”</code>在匹配时，会匹配尽可能长的结果。如果你想让他匹配到最短的就停止，需要用<code>“.*?”</code>。如<code>“I.*?e”</code>，就会得到第二种结果。这种匹配方式被称为懒惰匹配，而原本尽可能长的方式被称为贪婪匹配。</p>
+<h1 id="函数的参数传递"><a href="#函数的参数传递" class="headerlink" title="函数的参数传递"></a>函数的参数传递</h1><p>基本方式:</p>
+<p><code>fun1(a,b)</code> : 调用时提供参数的位置进行匹配，要求实参与行参的数量相等，默认按位置匹配参数。调用时，少参数或者多参数都会引起错误。</p>
+<pre><code>def func(arg1, arg2):
+     print arg1, arg2
+
+func(3, 7)
+</code></pre><p>Python 还提供了其他一些更灵活的参数传递方式，如：</p>
+<p><code>func2(a=1, b=2, c=3)</code> : 有默认值,当没有提供足够的参数时, 会用默认值作为参数的值.提供的参数会按顺序先匹配前面位置的参数, 后面未匹配到的参数使用默认值.</p>
+<pre><code>def func(arg1=1, arg2=2, arg3=3):
+print arg1, arg2, arg3
+
+func(2, 3, 4)
+func(5, 6)
+func(7) 
+
+输出为
+2 3 4
+5 6 3
+7 2 3
+</code></pre><p>当然,也可以直接用形参去指定某个参数,但是,<code>没有指定参数名的参数</code>必须在<code>所有</code> <code>指定参数名的参数</code>前面, 且<code>参数不能重复</code>.</p>
+<pre><code>func(arg2=8)
+func(arg3=9, arg1=10)
+func(11, arg3=12)
+</code></pre><p><code>func3(*args)</code> : 这种方式的厉害之处在于, 它可以接受任意数量的参数.</p>
+<pre><code>def calcSum(*args):
+sum = 0
+for i in args:
+    sum += i
+print sum
+
+
+calcSum(1,2,3)
+calcSum(123,456)
+calcSum()
+
+输出：
+6
+579
+0
+</code></pre><p>在变量前加上星号前缀（*），调用时的<code>参数会存储在一个 tuple（元组）对象</code>中，赋值给形参。在函数内部，需要对参数进行处理时，只要对这个 tuple 类型的形参（这里是 args）进行操作就可以了。因此，函数在定义时并不需要指明参数个数，就可以处理任意参数个数的情况。</p>
+<p>不过有一点需要注意，tuple 是有序的，所以 args 中元素的顺序受到赋值时的影响。如：</p>
+<pre><code>def printAll(*args):
+    for i in args:
+        print i,
+    print
+
+printAll(1,2,3)
+printAll(3,2,1)
+
+输出：
+1 2 3
+3 2 1
+</code></pre><p>虽然3个参数在总体上是相同的，但由于调用的顺序不一样，结果也是不同的。</p>
+<p><code>func4(**kargs)</code> : 既可以按参数名传递参数, 不受位置的限制, 又可以像 tuple 传递一样不受数量限制.因为func(**kargs) 则是把参数以键值对<code>字典</code>的形式传入。字典是无序的，所以在输出的时候，并不一定按照提供参数的顺序。同样在调用时，参数的顺序无所谓，只要对应合适的形参名就可以了。于是，采用这种参数传递的方法，可以不受参数数量、位置的限制。</p>
+<pre><code>def printAll(**kargs):
+    for k in kargs:
+        print k, &apos;:&apos;, kargs[k]
+
+printAll(a=1, b=2, c=3)
+printAll(x=4, y=5)
+
+输出：
+a : 1
+c : 3
+b : 2
+y : 5
+x : 4
+</code></pre><p>当然,Python能做到的不仅如此,以上几种方式不满意,你还可以混着用.</p>
+<pre><code>def func(x, y=5, *a, **b):
+     print x, y, a, b
+
+func(1)
+func(1,2)
+func(1,2,3)
+func(1,2,3,4)
+func(x=1)
+func(x=1,y=1)
+func(x=1,y=1,a=1)
+func(x=1,y=1,a=1,b=1)
+func(1,y=1)
+func(1,2,3,4,a=1)
+func(1,2,3,4,k=1,t=2,o=3)
+
+输出：
+1 5 () {}
+1 2 () {}
+1 2 (3,) {}
+1 2 (3, 4) {}
+1 5 () {}
+1 1 () {}
+1 1 () {&apos;a&apos;: 1}
+1 1 () {&apos;a&apos;: 1, &apos;b&apos;: 1}
+1 1 () {}
+1 2 (3, 4) {&apos;a&apos;: 1}
+1 2 (3, 4) {&apos;k&apos;: 1, &apos;t&apos;: 2, &apos;o&apos;: 3}
+</code></pre><p>在混合使用时，首先要注意函数的写法，必须遵守：</p>
+<ul>
+<li>带有默认值的形参(arg=)须在无默认值的形参(arg)之后；</li>
+<li>元组参数(*args)须在带有默认值的形参(arg=)之后；</li>
+<li>字典参数(*<em>kargs)须在元组参数(</em>args)之后。</li>
+</ul>
+<p>可以省略某种类型的参数，但仍需保证此顺序规则。调用时也需要遵守：</p>
+<ul>
+<li>指定参数名称的参数要在无指定参数名称的参数之后；</li>
+<li>不可以重复传递，即按顺序提供某参数之后，又指定名称传递。</li>
+</ul>
+<p>而在函数被调用时，参数的传递过程为：</p>
+<ol>
+<li>按顺序把无指定参数的实参赋值给形参；</li>
+<li>把指定参数名称(arg=v)的实参赋值给对应的形参；</li>
+<li>将多余的无指定参数的实参打包成一个 tuple 传递给元组参数(*args)；</li>
+<li>将多余的指定参数名的实参打包成一个 dict 传递给字典参数(**kargs)。</li>
+</ol>
+<h1 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h1><p>lambda是一种匿名函数,而且是一个极度简单的单行函数.</p>
+<p>语法格式:</p>
+<pre><code>lambda 参数列表: 表达式
+</code></pre><p>例子:</p>
+<pre><code>def sum(a, b, c):
+     return a + b + c
+
+-&gt;sum = lambda a, b, c: a + b + c     
+</code></pre><h1 id="map-和reduce"><a href="#map-和reduce" class="headerlink" title="map()和reduce()"></a>map()和reduce()</h1><p>首先来说两个例子:</p>
+<pre><code>1. 假设有一个数列，如何把其中每一个元素都翻倍？
+2. 假设有两个数列，如何求和？
+</code></pre><p>第一个问题:</p>
+<pre><code>lst_1 = (1,2,3,4,5,6)
+lst_2 = map(lambda x: x * 2, lst_1)
+print lst_2
+</code></pre><p>第二个问题:</p>
+<pre><code>print reduce((lambda x, y: x + y), xrange(1, 101))
+</code></pre><p>教程里是这么解释的:</p>
+<pre><code>&quot;map 可以看作是把一个序列根据某种规则，映射到另一个序列。reduce 做的事情就是把一个序列根据某种规则，归纳为一个输出。&quot;    
+</code></pre><p>先看看函数的调用格式:</p>
+<pre><code>map: map(函数,序列) #第一个参数是一个函数, 之后的参数是序列, 可以是 list、tuple.
+
+reduce: reduce(函数,序列) #第一个参数也是一个函数, 之后的参数是序列, 可以是 list、tuple.
+</code></pre><p><strong>它们的的区别就在与函数参数的功能不同,map的参数函数必须是一个<code>一元操作函数</code>,reduce的参数函数必须是一个<code>二元操作函数</code></strong>所以通常map返回的是一个序列,二reduce返回的是一个运算结果.</p>
+<p>所以,如果你要处理一个序列以获得新的序列,就用map; 如果想根据一个数列计算出某个结果,那就用reduce吧~~~</p>
+<p>ps: Python3.0之后, reduce已经被移出内置函数, 使用 reduce 需要先通过 from functools import reduce 引入. </p>
+<h1 id="range-和xrange"><a href="#range-和xrange" class="headerlink" title="range()和xrange()"></a>range()和xrange()</h1><p>上面的总结reduce的时候提到了xrange()这个函数,开始我也只是奇怪,并没有去纠结它和range()有什么不同,但是某一次我试着打印xrange(1,11),发现输出也是xrange(1,11):<br><img src="/2016/05/26/python-base/xrange.png" alt="xrange"></p>
+<p>而打印range(1,11),输出的是一个列表:<br><img src="/2016/05/26/python-base/range.png" alt="range"></p>
+<p>其实<code>range()</code>和<code>xrange()</code>的定义是一样的:</p>
+<pre><code>range(start=0,stop,step)
+xrange(start=0,stop,step)
+</code></pre><ul>
+<li>start表示列表开始的值，默认为“0”。</li>
+<li>stop 表示列表结束的值，该参数不可缺少</li>
+<li>参数step表示步长，默认值为“1”。<br><img src="/2016/05/26/python-base/contrast.png" alt="contrast"></li>
+</ul>
+<p>不同的是:range()返回一个递增或递减的数字列表, xrange 是一个类, 返回的是一个xrange对象. 所以打印出来才会是像xrange(1,11)这样的结果. </p>
+<p>xrange()的优点在于:使用xrange()进行遍历, 每次遍历只返回一个值. range()返回的是一个列表, 一次性计算并返回所有的值. 因此, xrange()的执行效率要高于range().</p>
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>Python到处都体现着<code>简单</code>这两个字.<br>开辟多线程只需一行代码:</p>
+<pre><code>start_new_thread(function, args[, kwargs])
+</code></pre><ul>
+<li>function 是开发者定义的线程函数，</li>
+<li>args 是传递给线程函数的参数，必须是tuple类型，</li>
+<li>kwargs 是可选参数。</li>
+</ul>
+<p>不用手动管理线程, 通常情况, 线程在 function 执行完毕后结束.</p>
+<p>然而Python的多线程并不完善,这里推荐两篇文章,有兴趣可以去研读一下:</p>
+<p><a href="http://my.oschina.net/leejun2005/blog/179265#OSC_h3_1" target="_blank" rel="noopener">理解 Python 中的多线程</a><br><a href="http://www.tuicool.com/articles/7zIra2r" target="_blank" rel="noopener">Python 的 GIL 是什么鬼，多线程性能究竟如何</a></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/27/markdown-TOC/" rel="prev">markdown-TOC</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/25/cmd/" rel="next">终端的常用命令</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+/*
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+*/
+    .donate_bar a.btn_donate:hover { 
+        // background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏">赏</a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        仅仅是一个功能
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="/img/aliPay.JPG" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="/img/aliPay.JPG" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="/img/wechatPay.JPG" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="/img/wechatPay.JPG" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="/img/aliPay.JPG" title="支付宝打赏" class="fancybox" rel="article0" style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="/img/aliPay.JPG" title height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="/img/wechatPay.JPG" title="微信打赏" class="fancybox" rel="article0" style="margin-right:30%">
+                                <img src="/img/wechatPay.JPG" title height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+      
+    </div>
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+	<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+	<a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/img/IMG_5048.jpg" alt="Locker" itemprop="image">
+          <p class="site-author-name" itemprop="name">Locker</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">half of iOSer, half of tester</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">categories</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/sherlockz" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        <div class="links-of-friendly motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://wayjam.me" target="_blank">WayJamSo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://paulswith.github.io/" target="_blank">Dobby</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+            </a>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WHY-Python"><span class="nav-number">1.</span> <span class="nav-text">WHY Python?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本问题"><span class="nav-number">2.</span> <span class="nav-text">基本问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习途径"><span class="nav-number">2.1.</span> <span class="nav-text">学习途径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">2.2.</span> <span class="nav-text">环境配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本语法"><span class="nav-number">3.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#print"><span class="nav-number">3.1.</span> <span class="nav-text">print</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#input-和raw-input"><span class="nav-number">3.2.</span> <span class="nav-text">input()和raw_input()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">3.3.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bool-‘False’"><span class="nav-number">3.4.</span> <span class="nav-text">bool(‘False’)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化"><span class="nav-number">3.5.</span> <span class="nav-text">格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import"><span class="nav-number">3.6.</span> <span class="nav-text">import</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写文件"><span class="nav-number">3.7.</span> <span class="nav-text">读写文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#and-or"><span class="nav-number">3.8.</span> <span class="nav-text">and-or</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机数"><span class="nav-number">3.9.</span> <span class="nav-text">随机数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表解析"><span class="nav-number">3.10.</span> <span class="nav-text">列表解析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式"><span class="nav-number">4.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用特殊符号"><span class="nav-number">4.1.</span> <span class="nav-text">常用特殊符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值得注意的地方"><span class="nav-number">4.2.</span> <span class="nav-text">值得注意的地方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒惰匹配和贪婪匹配"><span class="nav-number">4.3.</span> <span class="nav-text">懒惰匹配和贪婪匹配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数的参数传递"><span class="nav-number">5.</span> <span class="nav-text">函数的参数传递</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lambda"><span class="nav-number">6.</span> <span class="nav-text">lambda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#map-和reduce"><span class="nav-number">7.</span> <span class="nav-text">map()和reduce()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#range-和xrange"><span class="nav-number">8.</span> <span class="nav-text">range()和xrange()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多线程"><span class="nav-number">9.</span> <span class="nav-text">多线程</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright">
+  
+  &copy; &nbsp;  2016 - 
+  <span itemprop="copyrightYear">2020
+  </span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Locker
+  </span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme by <a class="theme-link" href="http://blog.idhyt.com">idhyt</a>.<a class="theme-link" href="https://github.com/idhyt/hexo-theme-next/tree/magiclamp">Mala</a>
+</div>
+
+<!-- busuanzi -->
+
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'sherlockz';
+      var disqus_identifier = '2016/05/26/python-base/';
+      var disqus_title = 'Python基础知识总结';
+      var disqus_url = 'http://sherlockz.github.io/2016/05/26/python-base/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

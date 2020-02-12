@@ -1,0 +1,892 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mala">
+<head><meta name="generator" content="Hexo 3.9.0">
+  
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5">
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1">
+
+
+    <meta name="description" content="half of iOSer, half of tester">
+
+
+
+  <meta name="keywords" content="iOS逆向,">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sherlock" type="application/atom+xml">
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1">
+
+
+<meta name="description" content="$ 写给像我一样的小白">
+<meta name="keywords" content="iOS逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不懂汇编,如何逆向(iOS)">
+<meta property="og:url" content="http://sherlockz.github.io/2017/10/22/ios-hook/index.html">
+<meta property="og:site_name" content="Sherlock">
+<meta property="og:description" content="$ 写给像我一样的小白">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://sherlockz.github.io/2017/10/22/ios-hook/1508489189.gif">
+<meta property="og:updated_time" content="2017-11-01T03:00:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不懂汇编,如何逆向(iOS)">
+<meta name="twitter:description" content="$ 写给像我一样的小白">
+<meta name="twitter:image" content="http://sherlockz.github.io/2017/10/22/ios-hook/1508489189.gif">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mala',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 不懂汇编,如何逆向(iOS) | Sherlock </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">trace your love</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br>
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br>
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br>
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br>
+            About
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input">
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'Ls6_vyuHEGACo3ng2hvy','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              不懂汇编,如何逆向(iOS)
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          Posted on
+          <time itemprop="dateCreated" datetime="2017-10-22T12:10:38+08:00" content="2017-10-22">
+            2017-10-22
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2017/10/22/ios-hook/#comments" itemprop="discussionUrl">
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/10/22/ios-hook/" itemprop="commentsCount"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p><strong> $ 写给像我一样的小白</strong></p>
+<a id="more"></a>
+<h2 id="0x1-逆向一个APP有哪些步骤-不越狱"><a href="#0x1-逆向一个APP有哪些步骤-不越狱" class="headerlink" title="0x1 逆向一个APP有哪些步骤(不越狱)"></a>0x1 逆向一个APP有哪些步骤(不越狱)</h2><ol>
+<li>砸壳</li>
+<li>dump出头文件</li>
+<li>分析功能界面</li>
+<li>hopper || iDA 分析伪代码</li>
+<li>写hook</li>
+<li>打包动态库</li>
+<li>注入动态库到APP</li>
+<li>APP重签名</li>
+<li>安装到手机上</li>
+</ol>
+<h3 id="MonkeyDev"><a href="#MonkeyDev" class="headerlink" title="MonkeyDev"></a>MonkeyDev</h3><p><code>MonkeyDev</code>是一个xcode插件, 此处先膜一下<code>@庆哥</code></p>
+<pre><code>原有iOSOpenDev的升级，非越狱插件开发集成神器！
+
+- 可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。
+- 只需拖入一个砸壳应用，自动集成class-dump、restore-symbol、Reveal、Cycript和注入的动态库并重签名安装到非越狱机器。
+- 支持调试自己编写的动态库和第三方App
+- 支持通过CocoaPods第三方应用集成SDK以及非越狱插件，简单来说就是通过CocoaPods搭建了一个非越狱插件商店。
+</code></pre><p>庆哥的github如是说.</p>
+<p><code>MonkeyDev</code>解决了上面说到的50%的步骤, 再外加一个动态调试.</p>
+<p><a href="https://github.com/AloneMonkey/MonkeyDev" target="_blank" rel="noopener">https://github.com/AloneMonkey/MonkeyDev</a></p>
+<p><strong> PS:问问题之前先熟读wiki</strong></p>
+<h2 id="0x2-剩下的工作"><a href="#0x2-剩下的工作" class="headerlink" title="0x2 剩下的工作"></a>0x2 剩下的工作</h2><h3 id="砸壳"><a href="#砸壳" class="headerlink" title="砸壳"></a>砸壳</h3><p>其实这个是非必要项, 自己手动砸壳需要已越狱的手机. 想手动砸壳可以参考这篇文章.</p>
+<p><a href="http://www.jianshu.com/p/4cfd86600ced?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="noopener">iOS逆向工程之Clutch砸壳</a></p>
+<p>不想自己手动砸壳的可以去各大应用平台,如PP助手等.下载越狱版的软件,这些都是已经砸好壳的了.</p>
+<h3 id="分析功能界面-动态分析"><a href="#分析功能界面-动态分析" class="headerlink" title="分析功能界面(动态分析)"></a>分析功能界面(动态分析)</h3><p>主流有两种方法:</p>
+<ol>
+<li><a href="http://www.jianshu.com/p/621210ec3ff0" target="_blank" rel="noopener">Cycript</a></li>
+<li><a href="http://www.jianshu.com/p/f2970ef365fe" target="_blank" rel="noopener">Reveal</a></li>
+</ol>
+<p>但是使用了<code>MonkeyDev</code>之后多了一种方法. hook oc的消息通知函数,如:<a href="https://github.com/qhd/ANYMethodLog" target="_blank" rel="noopener">ANYMethodLog</a>.</p>
+<p>因为每个app启动的时候都会调用appDelegate里面的<code>didFinishLaunchingWithOptions:</code>这个方法, 也就是说每个app都会有这个方法. 那我们可以在class-dump出来的头文件中找到某个app的<code>appDelegate</code>文件名,然后hook掉<code>didFinishLaunchingWithOptions:</code>把所有基于UIViewController或者其他类执行的方法在运行的时候全部打出来.甚至连函数的参数都可打印出来.</p>
+<h3 id="分析伪代码-静态分析"><a href="#分析伪代码-静态分析" class="headerlink" title="分析伪代码(静态分析)"></a>分析伪代码(静态分析)</h3><p>上面一步分析功能界面是为了定位具体要hook的函数, 当定位出来要hook的函数之后, 就要去分析函数的具体实现了.</p>
+<p><a href="https://www.hopperapp.com/" target="_blank" rel="noopener">Hopper</a><br><a href="https://www.hex-rays.com/products/ida/index.shtml" target="_blank" rel="noopener">iDA</a></p>
+<p>这两个都是收费的,但都提供了demo版,只是做静态分析的话已经够用了.</p>
+<p><a href="http://www.jianshu.com/p/176c5e1d06ae" target="_blank" rel="noopener">IDA + Hopper 逆向开发近期学习</a></p>
+<p>我们在这一步的目的只是为了搞清楚函数的实现和函数之间的调用关系, 所以并不需要去直接修改汇编或者二进制代码, 只是反编译出来的伪代码有可能也会带有一下寄存器或者内存地址等一些看不懂的信息,完全可以把这些当做成命名简单的变量,我们只需要看懂其中的逻辑就好了. </p>
+<h3 id="编写hook代码"><a href="#编写hook代码" class="headerlink" title="编写hook代码"></a>编写hook代码</h3><p>OK, 现在要hook 的函数已经找到了,函数具体的实现也已经知道, 那下一步当然就是编写代码把函数hook掉.</p>
+<h4 id="captainhook"><a href="#captainhook" class="headerlink" title="captainhook"></a>captainhook</h4><p>在<code>MonkeyDev</code>中提供了<code>logos</code>和<code>captainhook</code>两种语法,用来编写hook代码.如果原来做过越狱开发的应该比较喜欢用<code>logos</code>,网上的教程也比较多.但是, 我学习的时候选择用<code>captainhook</code>(两个都好用,纯粹个人喜好).这里简单说一下写代码的过程:</p>
+<h5 id="1-如何调用已有的类和方法"><a href="#1-如何调用已有的类和方法" class="headerlink" title="1) 如何调用已有的类和方法"></a>1) 如何调用已有的类和方法</h5><p>如果需要使用到类的属性或类方法,最好自行创建一个头文件把<code>@interface</code>写进去,然后import这个头文件,写hook的时候就可以找到相应的属性了,但是如果你想通过这种方式给类添加属性是行不通的,我猜测是因为在程序运行的过程当中,内存的分配已经完成,想要添加属性值进去就需要对这个对象的内存进行扩容或者重新分配,但是通过写在自定义的头文件里面属性值,虽然是在同名的类下面,但是并不会添加在原来代码申请的内存当中,所以当你调用这个自己添加的属性的时候,原对象是找不到访问不了这个属性的,类似于<code>Category</code>.</p>
+<p>如果一定要添加属性,必须实现该属性的<code>get</code>和<code>set</code>方法,在里面调用runtime的外联方法<code>objc_getAssociatedObject</code>使对象和属性建立映射关系,这样在运行时对象才能找到你添加的属性.详细参考:<a href="http://blog.leichunfeng.com/blog/2015/06/26/objective-c-associated-objects-implementation-principle/" target="_blank" rel="noopener">Objective-C Associated Objects 的实现原理</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@interface</span> CMessageWrap</span><br><span class="line"></span><br><span class="line"><span class="meta">@property</span>(nonatomic, strong) NSString* m_nsContent;        <span class="comment">//发送消息的内容</span></span><br><span class="line"><span class="meta">@property</span>(nonatomic, strong) NSString* m_nsToUsr;          <span class="comment">//发送人</span></span><br><span class="line"><span class="meta">@property</span>(nonatomic, strong) NSString* m_nsFromUsr;        <span class="comment">//接收人</span></span><br><span class="line"><span class="meta">@property</span>(nonatomic, strong) NSMutableString *m_nsPushContent; </span><br><span class="line"></span><br><span class="line">+ (BOOL)isSenderFromMsgWrap:(CMessageWrap*) msgWrap;</span><br><span class="line"></span><br><span class="line">- (CMessageWrap*)initWithMsgType:(<span class="keyword">int</span>) type;</span><br><span class="line"></span><br><span class="line"><span class="meta">@end</span></span><br></pre></td></tr></table></figure>
+<h5 id="2-CHDeclareClass"><a href="#2-CHDeclareClass" class="headerlink" title="2) CHDeclareClass"></a>2) CHDeclareClass</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#define CHDeclareClass(name) \</span><br><span class="line">		<span class="meta">@class</span> name; \</span><br><span class="line">		static CHClassDeclaration_ name ## $;</span><br></pre></td></tr></table></figure>
+<p>这个宏用于声明你要hook的类.</p>
+<h5 id="3-CHOptimizedMethod"><a href="#3-CHOptimizedMethod" class="headerlink" title="3) CHOptimizedMethod"></a>3) CHOptimizedMethod</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define CHOptimizedMethod1(optimization, return_type, class_type, name1, type1, arg1) \</span><br><span class="line">		CHMethod_ ## optimization ## _(return_type, class_type *, class_type, CHClass(class_type), CHSuperClass(class_type), name1 ## $, name1:, CHDeclareSig1_(return_type, type1), (self, _cmd, arg1), type1 arg1)</span><br></pre></td></tr></table></figure>
+<p><code>CHOptimizedMethod</code>编写你要hook的方法,这个宏后面跟着一个数字,[0-9]代表着你要hook的方法的参数个数.</p>
+<h5 id="4-CHSuper"><a href="#4-CHSuper" class="headerlink" title="4) CHSuper"></a>4) CHSuper</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define CHSuper1(class_type, name1, val1) \</span><br><span class="line">		CHSuper_(class_type, @selector(name1:), name1 ## $, val1)</span><br></pre></td></tr></table></figure>
+<p><code>CHSuper</code>用于在<code>CHOptimizedMethod</code>内执行完自己的代码之后继续执行原函数的代码.</p>
+<h5 id="5-CHConstructor"><a href="#5-CHConstructor" class="headerlink" title="5) CHConstructor"></a>5) CHConstructor</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define CHConstructor static __attribute__((constructor)) void CHConcat(CHConstructor, __LINE__)()</span><br></pre></td></tr></table></figure>
+<p>在<code>__attribute__((constructor))</code>后的内容能保证在 dylib 加载时运行.</p>
+<h5 id="6-CHLoadLateClass"><a href="#6-CHLoadLateClass" class="headerlink" title="6) CHLoadLateClass"></a>6) CHLoadLateClass</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define CHLoadLateClass(name) CHLoadClass_(&amp;name ## $, objc_getClass(#name))</span><br></pre></td></tr></table></figure>
+<p>加载需要hook的类,写在<code>CHConstructor</code>里面.</p>
+<h5 id="7-CHClassHook"><a href="#7-CHClassHook" class="headerlink" title="7) CHClassHook"></a>7) CHClassHook</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define CHClassHook1(class, name1) CHHook_(class, name1 ## $)</span><br></pre></td></tr></table></figure>
+<p>加载需要hook的方法,写在<code>CHConstructor</code>里面.</p>
+<h5 id="8-CHDeclareMethod"><a href="#8-CHDeclareMethod" class="headerlink" title="8) CHDeclareMethod"></a>8) CHDeclareMethod</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define CHDeclareMethod1(return_type, class_type, name1, type1, arg1) \</span><br><span class="line">	CHDeclareMethod_(return_type, class_type *, class_type, CHClass(class_type), CHSuperClass(class_type), name1 ## $, name1:, CHDeclareSig1_(return_type, type1), (self, _cmd, arg1), type1 arg1)</span><br></pre></td></tr></table></figure>
+<p>声明和实现自己的方法, 要注意声明要写在调用之前.</p>
+<h5 id="9-Sample"><a href="#9-Sample" class="headerlink" title="9) Sample"></a>9) Sample</h5><p>这是我hook了微信聊天页面出现和消失两个代理方法的例子…</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//聊天基本页面</span></span><br><span class="line">CHDeclareClass(BaseMsgContentViewController)</span><br><span class="line"></span><br><span class="line"><span class="comment">//实现自己新加的方法</span></span><br><span class="line">CHDeclareMethod1(<span class="keyword">void</span>, MMUIViewController, backToMsgContentViewController, id, sender)&#123;</span><br><span class="line">    [sender removeFromSuperview];</span><br><span class="line">    UINavigationController *navi = [objc_getClass(<span class="string">"CAppViewControllerManager"</span>) getCurrentNavigationController];</span><br><span class="line">    LKButton *btn = (LKButton *)sender;</span><br><span class="line">    [LKNewestMsgManager sharedInstance].didTouchBtnName = btn.username;</span><br><span class="line">    [[NSNotificationCenter defaultCenter] postNotificationName:@<span class="string">"btnDidTouch"</span> object:nil];</span><br><span class="line">    MMServiceCenter* serviceCenter = [objc_getClass(<span class="string">"MMServiceCenter"</span>) defaultCenter];</span><br><span class="line">    CContactMgr *contactMgr = [serviceCenter getService:[objc_getClass("CContactMgr") class]];</span><br><span class="line">    CContact *contact = [contactMgr getContactByName:btn.username];</span><br><span class="line"></span><br><span class="line">    MMMsgLogicManager *logicManager = [serviceCenter getService:[objc_getClass("MMMsgLogicManager") class]];</span><br><span class="line">    [logicManager PushOtherBaseMsgControllerByContact:contact navigationController:navi animated:YES];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//hook viewDidAppear 方法</span></span><br><span class="line">CHOptimizedMethod1(self, <span class="keyword">void</span>, BaseMsgContentViewController, viewDidAppear, BOOL, flag)&#123;</span><br><span class="line">    [LKNewestMsgManager sharedInstance].currentChat = [(BaseMsgContentViewController*)[[LKNewestMsgManager sharedInstance] getCurrentVC]getCurrentChatName];</span><br><span class="line"></span><br><span class="line">    NSLog(@<span class="string">"%@"</span>, [LKNewestMsgManager sharedInstance].currentChat);</span><br><span class="line">    CHSuper1(BaseMsgContentViewController, viewDidAppear, flag);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//hook viewWillDisappear 方法</span></span><br><span class="line">CHOptimizedMethod1(self, <span class="keyword">void</span>, BaseMsgContentViewController, viewWillDisappear, BOOL, disappear)&#123;</span><br><span class="line">    [LKNewestMsgManager sharedInstance].currentChat = NULL;</span><br><span class="line">    CHSuper1(BaseMsgContentViewController, viewWillDisappear, disappear);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注册需要hook的类和方法</span></span><br><span class="line">CHConstructor&#123;</span><br><span class="line">    CHLoadLateClass(BaseMsgContentViewController);</span><br><span class="line">    CHClassHook1(BaseMsgContentViewController, viewWillDisappear);</span><br><span class="line">    CHClassHook1(BaseMsgContentViewController, viewDidAppear);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="0x3-做些有趣的事情"><a href="#0x3-做些有趣的事情" class="headerlink" title="0x3 做些有趣的事情"></a>0x3 做些有趣的事情</h2><p>我平常喜欢在微信公众号看些文章, 但是这时候如果有人发消息过来, 手机震了一下…….但是你并不知道是谁发来的消息, 这时候,按照微信培养的用户习惯….置顶保存文章,然后点击n个返回按钮然后点击<code>close</code>返回消息页面…..回了消息然后在回去看文章…..</p>
+<p>so,这就是痛点所在,不能快速查看回复消息.</p>
+<p>搞起来….</p>
+<h3 id="功能设想"><a href="#功能设想" class="headerlink" title="功能设想"></a>功能设想</h3><p>在任意页面, 当接收到异步消息, 通知当前页面弹出一个按钮提示, 点击按钮 push 对应聊天页面, pop 可返回原来的页面. </p>
+<h3 id="定位函数"><a href="#定位函数" class="headerlink" title="定位函数"></a>定位函数</h3><p>一开始只是因为看文章的痛点,只想hook webVC页面就好了,但是后来细想,当你在弄设置或者干其他事情的时候其实也有同样的问题,干脆直接搞底层<code>UIViewController</code>, 但是在分析的过程中,发现微信有一个自己实现的<code>MMUIViewController</code>.如此甚好, 直接搞它. </p>
+<p>通过动态分析的方法快速定位到需要hook的类:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BaseMsgContentViewController <span class="comment">//基本聊天页面</span></span><br><span class="line">MMUIViewController <span class="comment">//VC基类</span></span><br><span class="line">CMessageMgr <span class="comment">//消息接收类</span></span><br></pre></td></tr></table></figure></p>
+<p>对于<code>BaseMsgContentViewController</code>和<code>MMUIViewController</code>我们目的很明确,就是监听通知,当有消息来的时候,弹出按钮.</p>
+<p>这里可能有疑问,<code>BaseMsgContentViewController</code>应该也是继承<code>MMUIViewController</code>的,为什么还要单独hook. 原因很简单,因为你在和某人的聊天页面当中,当然不应该在弹出这个人的消息按钮.</p>
+<p>接下来就是借助<code>class-dump</code>和<code>Hopper</code>去定位和分析函数, 比如,我这里需要分析的就是点击按钮之后,如何跳转到对应的聊天页面.</p>
+<h3 id="hook"><a href="#hook" class="headerlink" title="hook"></a>hook</h3><p>OK, 所有需要用到的消息都拿到了, 开始写hook代码.</p>
+<p>下面是一些关键代码,全部的代码在github:<a href="https://github.com/sherlockZ/LKMessageSwitchPod" target="_blank" rel="noopener">LKMessageSwitchPod</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hook 消息接收类</span></span><br><span class="line">CHDeclareClass(CMessageMgr)</span><br><span class="line">CHOptimizedMethod2(self, <span class="keyword">void</span>, CMessageMgr, AsyncOnAddMsg, NSMutableString*, msg, MsgWrap, CMessageWrap*, wrap)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(![wrap.m_nsPushContent isEqual: @<span class="string">""</span>] &amp;&amp; wrap.m_nsPushContent != NULL)&#123;</span><br><span class="line">        [LKNewestMsgManager sharedInstance].username = msg;</span><br><span class="line">        [LKNewestMsgManager sharedInstance].content = wrap.m_nsPushContent;</span><br><span class="line">        [[NSNotificationCenter defaultCenter] postNotificationName:@<span class="string">"LkWechatMessageNotification"</span> object:nil];</span><br><span class="line">    &#125;</span><br><span class="line">    CHSuper2(CMessageMgr, AsyncOnAddMsg, msg, MsgWrap, wrap);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CHDeclareMethod1(<span class="keyword">void</span>, MMUIViewController, backToMsgContentViewController, id, sender)&#123;</span><br><span class="line">    [sender removeFromSuperview];</span><br><span class="line">    UINavigationController *navi = [objc_getClass(<span class="string">"CAppViewControllerManager"</span>) getCurrentNavigationController];</span><br><span class="line"></span><br><span class="line">    LKButton *btn = (LKButton *)sender;</span><br><span class="line">    [LKNewestMsgManager sharedInstance].didTouchBtnName = btn.username;</span><br><span class="line">    [[NSNotificationCenter defaultCenter] postNotificationName:@<span class="string">"btnDidTouch"</span> object:nil];</span><br><span class="line">    MMServiceCenter* serviceCenter = [objc_getClass(<span class="string">"MMServiceCenter"</span>) defaultCenter];</span><br><span class="line">    CContactMgr *contactMgr = [serviceCenter getService:[objc_getClass("CContactMgr") class]];</span><br><span class="line">    CContact *contact = [contactMgr getContactByName:btn.username];</span><br><span class="line">    MMMsgLogicManager *logicManager = [serviceCenter getService:[objc_getClass("MMMsgLogicManager") class]];</span><br><span class="line">    [logicManager PushOtherBaseMsgControllerByContact:contact navigationController:navi animated:YES];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">CHDeclareMethod0(<span class="keyword">void</span>, MMUIViewController, messageCallBack)&#123;</span><br><span class="line">    NSLog(@<span class="string">"收到消息!!!"</span>);</span><br><span class="line"></span><br><span class="line">    NSString *currentChatName = [LKNewestMsgManager sharedInstance].currentChat;</span><br><span class="line">    <span class="keyword">if</span>(self == [[LKNewestMsgManager sharedInstance]getCurrentVC] &amp;&amp; ![currentChatName isEqual: [LKNewestMsgManager sharedInstance].username])&#123;</span><br><span class="line"></span><br><span class="line">        LKButton *btn = [LKButton buttonWithType:UIButtonTypeRoundedRect];</span><br><span class="line">        btn.frame = CGRectMake(self.view.frame.size.width-<span class="number">100</span>-<span class="number">2</span>, <span class="number">74</span>, <span class="number">100</span>, <span class="number">40</span>);</span><br><span class="line">        btn.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:<span class="number">0.8</span>];</span><br><span class="line">        btn.tintColor = [UIColor whiteColor];</span><br><span class="line">        [btn setTitle:[LKNewestMsgManager sharedInstance].content forState:UIControlStateNormal];\</span><br><span class="line">        btn.username = [LKNewestMsgManager sharedInstance].username;</span><br><span class="line">        btn.clipsToBounds = YES;</span><br><span class="line">        btn.layer.cornerRadius = <span class="number">10</span>;</span><br><span class="line">        btn.contentEdgeInsets = UIEdgeInsetsMake(<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">        [btn addTarget:self action:<span class="meta">@selector</span>(backToMsgContentViewController:) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">        [btn registerNotification];</span><br><span class="line">        btn.swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:<span class="meta">@selector</span>(handleSwipes:)];</span><br><span class="line">        btn.swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;</span><br><span class="line">        btn.swipeGestureRecognizer.numberOfTouchesRequired = <span class="number">1</span>;</span><br><span class="line">        [btn addGestureRecognizer:btn.swipeGestureRecognizer];</span><br><span class="line"></span><br><span class="line">        [self.view addSubview:btn];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p><img src="/2017/10/22/ios-hook/1508489189.gif" alt="1508489189.gif"></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS逆向/" rel="tag">#iOS逆向</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/14/traceDump/" rel="prev">逆向从 Instruments 中获取 GPU 数据</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/27/party/" rel="next">闭上眼,你看到的更多</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div>
+      
+        <style type="text/css">
+
+    .donate_bar {
+        text-align: center;
+        margin-top : 5%;
+    }
+
+    .donate_bar.hidden {
+        display:none;
+    }
+/*
+    .donate_bar a.btn_donate {
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        margin-left:auto;
+        margin-right:auto;
+
+        background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat;
+        _background: url("http://img.t.sinajs.cn/t5/style/images/apps_PRF/e_media/btn_reward.gif") no-repeat; 
+
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+*/
+    .donate_bar a.btn_donate:hover { 
+        // background-position: 0px -82px;
+        color: #87daff;
+    }
+
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+
+    .bold { 
+        font-weight: bold; 
+    }
+
+    .post-donate a {
+        border-bottom: 0px;
+    }
+
+    #donate_guide table {
+        border: none;
+    }
+
+    #donate_guide td {
+        border-bottom: none;
+        border-right: none;
+        // background: #333333;
+        valign: top;
+    }
+
+</style>
+
+
+
+    
+
+    <div class="post-donate">
+        <div id="donate_board" class="donate_bar center">
+              <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏">赏</a>
+              <span id="donate_txt" class="donate_txt">
+                   
+                        仅仅是一个功能
+                   
+              </span>
+            <br>
+        </div>  
+  
+        <div id="donate_guide" class="donate_bar center hidden">
+            <!--
+            
+                <a href="/img/aliPay.JPG" title="支付宝打赏" class="fancybox" rel="article0" 
+                    style="float:left;margin-left:25%;margin-right:10px;">
+                    <img src="/img/aliPay.JPG" title="" height="164px" width="164px">
+                </a> 
+              
+
+            
+                <a href="/img/wechatPay.JPG" title="微信打赏" class="fancybox" rel="article0"
+                    style="margin-right:30%">
+                    <img src="/img/wechatPay.JPG" title="" height="164px" width="164px">
+                </a>
+            
+            -->
+            <table>
+                <tr>
+                    <td>
+                        
+                            <a href="/img/aliPay.JPG" title="支付宝打赏" class="fancybox" rel="article0" style="float:left;margin-left:25%;margin-right:10px;">
+                                <img src="/img/aliPay.JPG" title height="164px" width="164px">
+                            </a> 
+                         
+                    </td>
+                    <td>
+                        
+                            <a href="/img/wechatPay.JPG" title="微信打赏" class="fancybox" rel="article0" style="margin-right:30%">
+                                <img src="/img/wechatPay.JPG" title height="164px" width="164px">
+                            </a>
+                        
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById('btn_donate').onclick = function() {
+                $('#donate_board').addClass('hidden');
+                // $('#donate_guide').removeClass('hidden');
+                $('#donate_guide').show(2000);
+            }
+
+        </script>
+    </div>
+
+    
+
+
+      
+    </div>
+
+    <div class="post-spread">
+      
+        <div class="bdsharebuttonbox">
+	<a href="#" class="bds_more" data-cmd="more"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+	<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+	<a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div id="disqus_thread">
+                <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/img/IMG_5048.jpg" alt="Locker" itemprop="image">
+          <p class="site-author-name" itemprop="name">Locker</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">half of iOSer, half of tester</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            
+              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-name">categories</span>
+              
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">tags</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="menu-item-icon icon-next-feed"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/sherlockz" target="_blank">GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        <div class="links-of-friendly motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://wayjam.me" target="_blank">WayJamSo</a>
+              </span>
+            
+              <span class="links-of-author-item">
+              <a href="https://paulswith.github.io/" target="_blank">Dobby</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+            </a>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x1-逆向一个APP有哪些步骤-不越狱"><span class="nav-number">1.</span> <span class="nav-text">0x1 逆向一个APP有哪些步骤(不越狱)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MonkeyDev"><span class="nav-number">1.1.</span> <span class="nav-text">MonkeyDev</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x2-剩下的工作"><span class="nav-number">2.</span> <span class="nav-text">0x2 剩下的工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#砸壳"><span class="nav-number">2.1.</span> <span class="nav-text">砸壳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析功能界面-动态分析"><span class="nav-number">2.2.</span> <span class="nav-text">分析功能界面(动态分析)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析伪代码-静态分析"><span class="nav-number">2.3.</span> <span class="nav-text">分析伪代码(静态分析)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写hook代码"><span class="nav-number">2.4.</span> <span class="nav-text">编写hook代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#captainhook"><span class="nav-number">2.4.1.</span> <span class="nav-text">captainhook</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-如何调用已有的类和方法"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">1) 如何调用已有的类和方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-CHDeclareClass"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">2) CHDeclareClass</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-CHOptimizedMethod"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">3) CHOptimizedMethod</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-CHSuper"><span class="nav-number">2.4.1.4.</span> <span class="nav-text">4) CHSuper</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-CHConstructor"><span class="nav-number">2.4.1.5.</span> <span class="nav-text">5) CHConstructor</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-CHLoadLateClass"><span class="nav-number">2.4.1.6.</span> <span class="nav-text">6) CHLoadLateClass</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-CHClassHook"><span class="nav-number">2.4.1.7.</span> <span class="nav-text">7) CHClassHook</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-CHDeclareMethod"><span class="nav-number">2.4.1.8.</span> <span class="nav-text">8) CHDeclareMethod</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-Sample"><span class="nav-number">2.4.1.9.</span> <span class="nav-text">9) Sample</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x3-做些有趣的事情"><span class="nav-number">3.</span> <span class="nav-text">0x3 做些有趣的事情</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能设想"><span class="nav-number">3.1.</span> <span class="nav-text">功能设想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位函数"><span class="nav-number">3.2.</span> <span class="nav-text">定位函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hook"><span class="nav-number">3.3.</span> <span class="nav-text">hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">3.4.</span> <span class="nav-text">效果</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright">
+  
+  &copy; &nbsp;  2016 - 
+  <span itemprop="copyrightYear">2020
+  </span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Locker
+  </span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme by <a class="theme-link" href="http://blog.idhyt.com">idhyt</a>.<a class="theme-link" href="https://github.com/idhyt/hexo-theme-next/tree/magiclamp">Mala</a>
+</div>
+
+<!-- busuanzi -->
+
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+    
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'sherlockz';
+      var disqus_identifier = '2017/10/22/ios-hook/';
+      var disqus_title = '不懂汇编,如何逆向(iOS)';
+      var disqus_url = 'http://sherlockz.github.io/2017/10/22/ios-hook/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
